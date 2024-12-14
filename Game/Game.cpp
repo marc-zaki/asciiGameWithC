@@ -83,5 +83,5 @@ void main() {
 		moveHero(rhero, chero, move, game);
 	}
 	cout << "Hello World!";
-	cout << "goo job!";
+	cout << "good job!";
 }
