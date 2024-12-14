@@ -82,5 +82,6 @@ void main() {
 		move = _getch();
 		moveHero(rhero, chero, move, game);
 	}
-	cout<< "Hello World!"
+	cout << "Hello World!";
+	cout << "goo job!";
 }
