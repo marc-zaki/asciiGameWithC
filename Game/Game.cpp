@@ -28,8 +28,7 @@ void drawGame(char game[][120]) {
 		}
 	}
 }
-void drawHero(char game[][120], int& rhero, int& chero) {
-
+void drawHero(char game[][120], int& rHero, int& cHero) {
 }
 void moveHero(int &rhero, int &chero, char move, char game[][120]) 
 {
