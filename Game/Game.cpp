@@ -2,60 +2,84 @@
 #include <conio.h>
 #include <windows.h>
 using namespace std;
-void Empty(char game[][120]) {
+void Empty(char game[][350]) {
 	for (int r = 0; r < 30; r++)
 	{
-		for (int c = 0; c < 120; c++)
+		for (int c = 0; c < 350; c++)
 		{
 			game[r][c] = ' ';
 		}
 	}
 }
-void drawPlatform(char platform[][120], int platformR, int platformC) {
-	for (int i = 0; i < 100; i++)
+void drawPlatform(char platform[][350], int platformR, int platformC) {
+	for (int i = 0; i < 300; i++)
 	{
 		platform[platformR][platformC + i] = '=';
 
 	}
 }
-void drawGame(char game[][120]) {
+void drawGame(char game[][350], int scrollCend, int scrollCstart, int scrollRstart, int scrollRend) {
 	system("cls");
-	for (int r = 0; r < 30; r++)
+	for (int r = scrollRstart; r < scrollRend; r++)
 	{
-		for (int c = 0; c < 120; c++)
+		for (int c = scrollCstart; c < scrollCend; c++)
 		{
 			cout << game[r][c];
 		}
 	}
 }
-void drawHero(char game[][120], int& rHero, int& cHero) {
+void drawHero(char game[][350], int& rhero, int& chero) {
+	game[rhero - 2][chero + 4] = '?';
+	game[rhero - 1][chero + 2] = '/';
+	game[rhero - 1][chero + 3] = '|';
+	game[rhero - 1][chero + 4] = ':';
+	game[rhero - 1][chero + 5] = '|';
+	game[rhero - 1][chero + 6] = '\\';
+	game[rhero - 0][chero + 2] = '_';
+	game[rhero - 0][chero + 3] = '/';
+	game[rhero - 0][chero + 5] = '\\';
+	game[rhero - 0][chero + 6] = '_';
 }
-void moveHero(int &rhero, int &chero, char move, char game[][120]) 
+void moveHero(int& rhero, int& chero, char move, char game[][350], int& scrollCstart, int& scrollCend, int& scrollRstart, int& scrollRend)
 {
 	if (move == 'w')
 	{
-		rhero-=2;
+		rhero -= 2;
+		scrollRend -= 2;
+		scrollRstart--;
 	}
+
 	if (move == 'a')
 	{
 		chero--;
+		scrollCstart--;
+		scrollCend--;
 	}
-	if (move == 's' && game[rhero][chero] != '=')
+	if (move == 's' && game[rhero+1][chero] != '=')
 	{
 		rhero++;
+		scrollRstart++;
+		scrollRend++;
 	}
+	
 	if (move == 'd')
 	{
-		chero++;
+		chero += 2;
+		scrollCend++;
+		scrollCstart++;
 	}
+	
+	
 }
-void gravity(char game[][120], int& rHero, int&cHero) {
-	if (game[rHero][cHero] == ' ')
+void gravity(char game[][350], int& rHero, int&cHero, int & scrollRstart, int &scrollRend) {
+	if (game[rHero+1][cHero] == ' ')
 	{
 		rHero++;
+		scrollRstart++;
+		scrollRend++;
 	}
 }
-void drawEnemy2(char game[][120], int enemy2r, int enemy2c) {
+void drawEnemy2(char game[][350], int enemy2r, int enemy2c) {
 	game[enemy2r - 10][enemy2c + 4] = 'o';
 	game[enemy2r - 10][enemy2c + 8] = 'o';
 	game[enemy2r - 9][enemy2c + 5] = ')';
@@ -122,7 +146,7 @@ void drawEnemy2(char game[][120], int enemy2r, int enemy2c) {
 	game[enemy2r - 0][enemy2c + 11] = '\'';
 
 }
-void drawEnemy1(char game[][120], int enemy1r, int enemy1c) {
+void drawEnemy1(char game[][350], int enemy1r, int enemy1c) {
 	game[enemy1r - 9][enemy1c + 8] = '_';
 	game[enemy1r - 9][enemy1c + 9] = '_';
 	game[enemy1r - 9][enemy1c + 10] = '_';
@@ -205,7 +229,7 @@ void drawEnemy1(char game[][120], int enemy1r, int enemy1c) {
 	game[enemy1r - 0][enemy1c + 12] = '"';
 	game[enemy1r - 0][enemy1c + 13] = '"';
 }
-void designTree1(char game[][120], int designTree1r, int designTree1c) {
+void designTree1(char game[][350], int designTree1r, int designTree1c) {
 	game[designTree1r - 11][designTree1c + 14] = 'v';
 	game[designTree1r - 11][designTree1c + 16] = '.';
 	game[designTree1r - 11][designTree1c + 20] = '.';
@@ -334,7 +358,7 @@ void designTree1(char game[][120], int designTree1r, int designTree1c) {
 	game[designTree1r - 0][designTree1c + 36] = '.';
 	game[designTree1r - 0][designTree1c + 37] = '_';
 }
-void designTree2 (char game[][120], int designTree2r, int designTree2c) {
+void designTree2 (char game[][350], int designTree2r, int designTree2c) {
 	game[designTree2r - 24][designTree2c + 12] = '.';
 	game[designTree2r - 24][designTree2c + 21] = '+';
 	game[designTree2r - 24][designTree2c + 32] = '.';
@@ -797,24 +821,27 @@ void designTree2 (char game[][120], int designTree2r, int designTree2c) {
 
 }
 void main() {
-	char game[30][120];
-	int rhero = 24, chero = 5, platformR = 27, platformC = 2, enemy1r = 27, enemy1c = 60, enemy2r = 27, enemy2c = 80, designTree2r = 27, designTree2c = 5;
+	char game[30][350];
+	int rhero = 24, chero = 5, platformR = 27, platformC = 2, enemy1r = 27, enemy1c = 60, enemy2r = 27, enemy2c = 80, designTree2r = 30, designTree2c = 15;
 	char move=NULL;
+	int scrollCstart = 0, scrollCend = 120,scrollRstart = 0, scrollRend = 30;
+
+
 	while(1) {
-		while (!_kbhit()) 
-		{
+		while (!_kbhit()) {
 			Empty(game);
 			drawPlatform(game, platformR, platformC);
 			designTree2(game, designTree2r, designTree2c);
-			gravity(game, rhero, chero);
-			drawHero(game, rhero, chero); //missing hero design
+			
+			drawHero(game, rhero, chero); // temp hero desgin
 			drawEnemy1(game, enemy1r, enemy1c);
 			drawEnemy2(game, enemy2r, enemy2c);
-			drawGame(game);
+			drawGame(game,scrollCend,scrollCstart,scrollRstart,scrollRend);
+			gravity(game, rhero, chero,scrollRstart, scrollRend);
 			Sleep(100);
 
 		}
 		move = _getch();
-		moveHero(rhero, chero, move, game);
+		moveHero(rhero, chero, move, game,scrollCstart,scrollCend,scrollRstart,scrollRend);
 	}
 }
