@@ -46,7 +46,7 @@ void moveHero(int& rhero, int& chero, char move, char game[][350], int& scrollCs
 	{
 		rhero -= 2;
 		scrollRend -= 2;
-		scrollRstart--;
+		scrollRstart-=2;
 	}
 
 	if (move == 'a')
