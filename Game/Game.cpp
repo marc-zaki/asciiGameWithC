@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <conio.h>
 #include <windows.h>
 using namespace std;
@@ -362,8 +362,8 @@ void moveHero(int& rhero, int& chero, char move, char game[][350], int& scrollCs
 	if (move == 'w')
 	{
 		rhero -= 2;
-		scrollRend -= 1;
-		scrollRstart-= 1;
+		scrollRend -= 2;
+		scrollRstart-= 2;
 	}
 
 	if (move == 'a')
@@ -1271,18 +1271,106 @@ void laser(char game[][350], int rLaser, int cLaser, int &chero) {
 		game[rLaser - 1][cLaser + 32] = ':';
 	}
 }
+void elevator(char game[][350] , int rElevator, int cElevator) {
+	game[rElevator - 26][cElevator + 0] = ' ';
+	game[rElevator - 25][cElevator + 6] = '|';
+	game[rElevator - 24][cElevator + 0] = ' ';
+	game[rElevator - 24][cElevator + 6] = '|';
+	game[rElevator - 23][cElevator + 0] = ' ';
+	game[rElevator - 23][cElevator + 6] = '|';
+	game[rElevator - 22][cElevator + 0] = ' ';
+	game[rElevator - 22][cElevator + 6] = '|';
+	game[rElevator - 21][cElevator + 0] = ' ';
+	game[rElevator - 21][cElevator + 6] = '|';
+	game[rElevator - 20][cElevator + 0] = ' ';
+	game[rElevator - 20][cElevator + 6] = '|';
+	game[rElevator - 19][cElevator + 0] = ' ';
+	game[rElevator - 19][cElevator + 6] = '|';
+	game[rElevator - 18][cElevator + 0] = ' ';
+	game[rElevator - 18][cElevator + 6] = '|';
+	game[rElevator - 17][cElevator + 0] = ' ';
+	game[rElevator - 17][cElevator + 6] = '|';
+	game[rElevator - 16][cElevator + 0] = '_';
+	game[rElevator - 16][cElevator + 1] = '_';
+	game[rElevator - 16][cElevator + 2] = '_';
+	game[rElevator - 16][cElevator + 3] = '_';
+	game[rElevator - 16][cElevator + 4] = '_';
+	game[rElevator - 16][cElevator + 5] = '_';
+	game[rElevator - 16][cElevator + 6] = '_';
+	game[rElevator - 16][cElevator + 7] = '_';
+	game[rElevator - 16][cElevator + 8] = '_';
+	game[rElevator - 16][cElevator + 9] = '_';
+	game[rElevator - 16][cElevator + 10] = '_';
+	game[rElevator - 16][cElevator + 11] = '_';
+	game[rElevator - 16][cElevator + 12] = '_';
+	game[rElevator - 16][cElevator + 13] = '_';
+	game[rElevator - 16][cElevator + 14] = '_';
+	game[rElevator - 16][cElevator + 15] = '_';
+	game[rElevator - 16][cElevator + 16] = '_';
+	game[rElevator - 16][cElevator + 17] = '_';
+	game[rElevator - 16][cElevator + 18] = '_';
+	game[rElevator - 16][cElevator + 19] = '_';
+	game[rElevator - 16][cElevator + 20] = '_';
+	game[rElevator - 16][cElevator + 21] = '_';
+	game[rElevator - 16][cElevator + 22] = '_';
+	game[rElevator - 16][cElevator + 23] = '_';
+	game[rElevator - 16][cElevator + 24] = '_';
+	game[rElevator - 16][cElevator + 25] = '_';
+	game[rElevator - 15][cElevator + 0] = '|';
+	game[rElevator - 15][cElevator + 25] = '|';
+	game[rElevator - 14][cElevator + 0] = '|';
+	game[rElevator - 14][cElevator + 25] = '|';
+	game[rElevator - 13][cElevator + 0] = '|';
+	game[rElevator - 13][cElevator + 25] = '|';
+	game[rElevator - 12][cElevator + 0] = '|';
+	game[rElevator - 12][cElevator + 25] = '|';
+	game[rElevator - 11][cElevator + 0] = '|';
+	game[rElevator - 11][cElevator + 25] = '|';
+	game[rElevator - 10][cElevator + 0] = '|';
+	game[rElevator - 10][cElevator + 25] = '|';
+	game[rElevator - 9][cElevator + 0] = '|';
+	game[rElevator - 9][cElevator + 25] = '|';
+	game[rElevator - 8][cElevator + 0] = '|';
+	game[rElevator - 8][cElevator + 25] = '|';
+	game[rElevator - 0][cElevator + 0] = '_';
+	game[rElevator - 0][cElevator + 1] = '_';
+	game[rElevator - 0][cElevator + 2] = '_';
+	game[rElevator - 0][cElevator + 3] = '_';
+	game[rElevator - 0][cElevator + 4] = '_';
+	game[rElevator - 0][cElevator + 5] = '_';
+	game[rElevator - 0][cElevator + 6] = '_';
+	game[rElevator - 0][cElevator + 7] = '_';
+	game[rElevator - 0][cElevator + 8] = '_';
+	game[rElevator - 0][cElevator + 9] = '_';
+	game[rElevator - 0][cElevator + 10] = '_';
+	game[rElevator - 0][cElevator + 11] = '_';
+	game[rElevator - 0][cElevator + 12] = '_';
+	game[rElevator - 0][cElevator + 13] = '_';
+	game[rElevator - 0][cElevator + 14] = '_';
+	game[rElevator - 0][cElevator + 15] = '_';
+	game[rElevator - 0][cElevator + 16] = '_';
+	game[rElevator - 0][cElevator + 17] = '_';
+	game[rElevator - 0][cElevator + 18] = '_';
+	game[rElevator - 0][cElevator + 19] = '_';
+	game[rElevator - 0][cElevator + 20] = '_';
+	game[rElevator - 0][cElevator + 21] = '_';
+	game[rElevator - 0][cElevator + 22] = '_';
+	game[rElevator - 0][cElevator + 23] = '_';
+}
 void main() {
 	char game[30][350];
 	int rhero = 26, chero = 5, platformR = 27, platformC = 2, enemy1r = 5, enemy1c = 60, enemy2r = 26, enemy2c = 80, enemy3r = 27, enemy3c = 120, designTree2r = 27, designTree2c = 15, rBorder = 0, cBorder = 350;
 	char move=NULL;
 	int rLaser = 24, cLaser = 44;
 	int scrollCstart = 0, scrollCend = 120,scrollRstart = 0, scrollRend = 30;
+	int rElevator = 26, cElevator = 150;
 
 
 	while(1) {
 		while (!_kbhit()) {
 			Empty(game);
 			drawPlatform(game, platformR, platformC);
+			elevator(game, rElevator, cElevator);
 			designTree2(game, designTree2r, designTree2c);
 			drawHero(game, rhero, chero);
 			drawEnemy1s(game, enemy1r, enemy1c);
@@ -1296,6 +1384,6 @@ void main() {
 
 		}
 		move = _getch();
-		moveHero(rhero, chero, move, game,scrollCstart,scrollCend,scrollRstart,scrollRend);
+		moveHero(rhero, chero, move, game, scrollCstart, scrollCend, scrollRstart, scrollRend);
 	}
 }
