@@ -20,7 +20,7 @@ void drawPlatform(char platform[][350], int platformR, int platformC) {
 }
 void drawGame(char game[][350], int scrollCend, int scrollCstart, int scrollRstart, int scrollRend) {
 	system("cls");
-	for (int r = scrollRstart; r < scrollRend; r++)
+	for (int r = scrollRend; r < scrollRstart; r++)
 	{
 		for (int c = scrollCstart; c < scrollCend; c++)
 		{
@@ -28,7 +28,7 @@ void drawGame(char game[][350], int scrollCend, int scrollCstart, int scrollRsta
 		}
 	}
 }
-void Border(char game[][350], int rBorder, int cBorder) {
+/*void Border(char game[][350], int rBorder, int cBorder) {
 	game[rBorder - 29][cBorder + 0] = '.';
 	game[rBorder - 29][cBorder + 1] = '-';
 	game[rBorder - 29][cBorder + 2] = '=';
@@ -307,7 +307,7 @@ void Border(char game[][350], int rBorder, int cBorder) {
 	game[rBorder - 2][cBorder + 169] = '|';
 	game[rBorder - 1][cBorder + 0] = '!';
 	game[rBorder - 1][cBorder + 169] = '!';
-}
+}*/
 void drawHero(char game[][350], int& rhero, int& chero) {
 	game[rhero - 6][chero + 6] = '/';
 	game[rhero - 6][chero + 7] = '\\';
@@ -361,9 +361,11 @@ void moveHero(int& rhero, int& chero, char move, char game[][350], int& scrollCs
 {
 	if (move == 'w')
 	{
-		rhero -= 2;
-		scrollRend -= 2;
-		scrollRstart-= 2;
+		rhero --;
+		/*
+		scrollRstart --;
+		scrollRend ++;
+		*/
 	}
 
 	if (move == 'a')
@@ -375,8 +377,10 @@ void moveHero(int& rhero, int& chero, char move, char game[][350], int& scrollCs
 	if (move == 's' && game[rhero+1][chero] != '=')
 	{
 		rhero++;
+		/*
 		scrollRstart++;
 		scrollRend++;
+		*/
 	}
 	
 	if (move == 'd')
@@ -392,11 +396,13 @@ void gravity(char game[][350], int& rHero, int&cHero, int & scrollRstart, int &s
 	if (game[rHero+1][cHero] == ' ')
 	{
 		rHero++;
-		scrollRstart++;
+		/*
+		scrollRstart--;
 		scrollRend++;
+		*/
 	}
 }
-void drawEnemy1s(char game[][350], int enemy1r, int enemy1c) {
+void drawEnemySpider(char game[][350], int enemy1r, int enemy1c) {
 	game[enemy1r - 13][enemy1c + 14] = '(';
 	game[enemy1r - 12][enemy1c + 15] = ')';
 	game[enemy1r - 11][enemy1c + 14] = '(';
@@ -537,48 +543,53 @@ void drawEnemy1s(char game[][350], int enemy1r, int enemy1c) {
 	game[enemy1r - 0][enemy1c + 21] = '(';
 	game[enemy1r - 0][enemy1c + 22] = '/';
 }
-void drawEnemy2a(char game[][350], int enemy2r, int enemy2c) {
-	game[enemy2r - 4][enemy2c + 12] = '/';
-	game[enemy2r - 4][enemy2c + 14] = '.';
-	game[enemy2r - 4][enemy2c + 16] = '.';
-	game[enemy2r - 4][enemy2c + 17] = '\\';
-	game[enemy2r - 3][enemy2c + 12] = '\\';
-	game[enemy2r - 3][enemy2c + 15] = '-';
-	game[enemy2r - 3][enemy2c + 16] = '-';
-	game[enemy2r - 3][enemy2c + 17] = '-';
-	game[enemy2r - 3][enemy2c + 18] = '<';
-	game[enemy2r - 2][enemy2c + 13] = '\\';
-	game[enemy2r - 2][enemy2c + 16] = '/';
-	game[enemy2r - 1][enemy2c + 3] = '_';
-	game[enemy2r - 1][enemy2c + 4] = '_';
-	game[enemy2r - 1][enemy2c + 5] = '_';
-	game[enemy2r - 1][enemy2c + 6] = '_';
-	game[enemy2r - 1][enemy2c + 7] = '_';
-	game[enemy2r - 1][enemy2c + 8] = '_';
-	game[enemy2r - 1][enemy2c + 9] = '_';
-	game[enemy2r - 1][enemy2c + 10] = '_';
-	game[enemy2r - 1][enemy2c + 11] = '_';
-	game[enemy2r - 1][enemy2c + 12] = '_';
-	game[enemy2r - 1][enemy2c + 13] = '/';
-	game[enemy2r - 1][enemy2c + 15] = '/';
-	game[enemy2r - 0][enemy2c + 0] = '-';
-	game[enemy2r - 0][enemy2c + 1] = '=';
-	game[enemy2r - 0][enemy2c + 2] = ':';
-	game[enemy2r - 0][enemy2c + 3] = '_';
-	game[enemy2r - 0][enemy2c + 4] = '_';
-	game[enemy2r - 0][enemy2c + 5] = '_';
-	game[enemy2r - 0][enemy2c + 6] = '_';
-	game[enemy2r - 0][enemy2c + 7] = '_';
-	game[enemy2r - 0][enemy2c + 8] = '_';
-	game[enemy2r - 0][enemy2c + 9] = '_';
-	game[enemy2r - 0][enemy2c + 10] = '_';
-	game[enemy2r - 0][enemy2c + 11] = '_';
-	game[enemy2r - 0][enemy2c + 12] = '_';
-	game[enemy2r - 0][enemy2c + 13] = '_';
-	game[enemy2r - 0][enemy2c + 14] = '/';
+void drawEnemyMouse(char game[][350], int enemyMouseR, int enemyMouseC) {
+	game[enemyMouseR - 3][enemyMouseC + 7] = '(';
+	game[enemyMouseR - 3][enemyMouseC + 8] = '`';
+	game[enemyMouseR - 3][enemyMouseC + 9] = '-';
+	game[enemyMouseR - 3][enemyMouseC + 10] = '(';
+	game[enemyMouseR - 3][enemyMouseC + 11] = ')';
+	game[enemyMouseR - 3][enemyMouseC + 12] = '_';
+	game[enemyMouseR - 3][enemyMouseC + 13] = '.';
+	game[enemyMouseR - 3][enemyMouseC + 14] = '-';
+	game[enemyMouseR - 3][enemyMouseC + 15] = '=';
+	game[enemyMouseR - 3][enemyMouseC + 16] = '-';
+	game[enemyMouseR - 3][enemyMouseC + 17] = '.';
+	game[enemyMouseR - 2][enemyMouseC + 7] = '/';
+	game[enemyMouseR - 2][enemyMouseC + 8] = '6';
+	game[enemyMouseR - 2][enemyMouseC + 9] = '6';
+	game[enemyMouseR - 2][enemyMouseC + 12] = ',';
+	game[enemyMouseR - 2][enemyMouseC + 15] = ',';
+	game[enemyMouseR - 2][enemyMouseC + 18] = '\\';
+	game[enemyMouseR - 1][enemyMouseC + 5] = '=';
+	game[enemyMouseR - 1][enemyMouseC + 6] = '(';
+	game[enemyMouseR - 1][enemyMouseC + 7] = 'o';
+	game[enemyMouseR - 1][enemyMouseC + 8] = '_';
+	game[enemyMouseR - 1][enemyMouseC + 9] = '/';
+	game[enemyMouseR - 1][enemyMouseC + 10] = '=';
+	game[enemyMouseR - 1][enemyMouseC + 11] = '/';
+	game[enemyMouseR - 1][enemyMouseC + 12] = '/';
+	game[enemyMouseR - 1][enemyMouseC + 13] = '_';
+	game[enemyMouseR - 1][enemyMouseC + 14] = '(';
+	game[enemyMouseR - 1][enemyMouseC + 18] = '/';
+	game[enemyMouseR - 1][enemyMouseC + 19] = '=';
+	game[enemyMouseR - 1][enemyMouseC + 20] = '=';
+	game[enemyMouseR - 1][enemyMouseC + 21] = '=';
+	game[enemyMouseR - 1][enemyMouseC + 22] = '=';
+	game[enemyMouseR - 1][enemyMouseC + 23] = '=';
+	game[enemyMouseR - 1][enemyMouseC + 24] = '=';
+	game[enemyMouseR - 1][enemyMouseC + 25] = '`';
+	game[enemyMouseR - 0][enemyMouseC + 9] = '~';
+	game[enemyMouseR - 0][enemyMouseC + 10] = '"';
+	game[enemyMouseR - 0][enemyMouseC + 11] = '`';
+	game[enemyMouseR - 0][enemyMouseC + 13] = '~';
+	game[enemyMouseR - 0][enemyMouseC + 14] = '"';
+	game[enemyMouseR - 0][enemyMouseC + 15] = '~';
+	game[enemyMouseR - 0][enemyMouseC + 16] = '~';
+	game[enemyMouseR - 0][enemyMouseC + 17] = '`';
 
 }
-void drawEnemy3d(char game[][350], int renemy3, int cenemy3) {
+void drawEnemyDog(char game[][350], int renemy3, int cenemy3) {
 	game[renemy3 - 4][cenemy3 + 3] = '_';
 	game[renemy3 - 4][cenemy3 + 4] = '_';
 	game[renemy3 - 3][cenemy3 + 0] = 'o';
@@ -611,135 +622,6 @@ void drawEnemy3d(char game[][350], int renemy3, int cenemy3) {
 	game[renemy3 - 0][cenemy3 + 8] = '(';
 	game[renemy3 - 0][cenemy3 + 9] = '_';
 	game[renemy3 - 0][cenemy3 + 10] = '/';
-}
-void designTree1(char game[][350], int designTree1r, int designTree1c) {
-	game[designTree1r - 11][designTree1c + 14] = 'v';
-	game[designTree1r - 11][designTree1c + 16] = '.';
-	game[designTree1r - 11][designTree1c + 20] = '.';
-	game[designTree1r - 11][designTree1c + 21] = '_';
-	game[designTree1r - 11][designTree1c + 22] = ',';
-	game[designTree1r - 11][designTree1c + 24] = '|';
-	game[designTree1r - 11][designTree1c + 25] = '_';
-	game[designTree1r - 11][designTree1c + 28] = '.';
-	game[designTree1r - 11][designTree1c + 29] = ',';
-	game[designTree1r - 10][designTree1c + 11] = '`';
-	game[designTree1r - 10][designTree1c + 12] = '-';
-	game[designTree1r - 10][designTree1c + 13] = '.';
-	game[designTree1r - 10][designTree1c + 14] = '_';
-	game[designTree1r - 10][designTree1c + 15] = '\\';
-	game[designTree1r - 10][designTree1c + 16] = '/';
-	game[designTree1r - 10][designTree1c + 19] = '.';
-	game[designTree1r - 10][designTree1c + 22] = '\\';
-	game[designTree1r - 10][designTree1c + 24] = '/';
-	game[designTree1r - 10][designTree1c + 29] = '|';
-	game[designTree1r - 10][designTree1c + 30] = '/';
-	game[designTree1r - 10][designTree1c + 31] = '_';
-	game[designTree1r - 9][designTree1c + 15] = '\\';
-	game[designTree1r - 9][designTree1c + 16] = '\\';
-	game[designTree1r - 9][designTree1c + 19] = '_';
-	game[designTree1r - 9][designTree1c + 20] = '\\';
-	game[designTree1r - 9][designTree1c + 21] = ',';
-	game[designTree1r - 9][designTree1c + 23] = 'y';
-	game[designTree1r - 9][designTree1c + 25] = '|';
-	game[designTree1r - 9][designTree1c + 27] = '\\';
-	game[designTree1r - 9][designTree1c + 28] = '/';
-	game[designTree1r - 9][designTree1c + 29] = '/';
-	game[designTree1r - 8][designTree1c + 9] = '_';
-	game[designTree1r - 8][designTree1c + 10] = '\\';
-	game[designTree1r - 8][designTree1c + 11] = '_';
-	game[designTree1r - 8][designTree1c + 12] = '.';
-	game[designTree1r - 8][designTree1c + 13] = '_';
-	game[designTree1r - 8][designTree1c + 14] = '_';
-	game[designTree1r - 8][designTree1c + 15] = '_';
-	game[designTree1r - 8][designTree1c + 16] = '\\';
-	game[designTree1r - 8][designTree1c + 17] = '\\';
-	game[designTree1r - 8][designTree1c + 18] = ',';
-	game[designTree1r - 8][designTree1c + 20] = '\\';
-	game[designTree1r - 8][designTree1c + 21] = '\\';
-	game[designTree1r - 8][designTree1c + 22] = '/';
-	game[designTree1r - 8][designTree1c + 24] = '-';
-	game[designTree1r - 8][designTree1c + 25] = '.';
-	game[designTree1r - 8][designTree1c + 26] = '\\';
-	game[designTree1r - 8][designTree1c + 27] = '|';
-	game[designTree1r - 8][designTree1c + 28] = '|';
-	game[designTree1r - 7][designTree1c + 11] = '`';
-	game[designTree1r - 7][designTree1c + 12] = '7';
-	game[designTree1r - 7][designTree1c + 13] = '-';
-	game[designTree1r - 7][designTree1c + 14] = ',';
-	game[designTree1r - 7][designTree1c + 15] = '-';
-	game[designTree1r - 7][designTree1c + 16] = '-';
-	game[designTree1r - 7][designTree1c + 17] = '.';
-	game[designTree1r - 7][designTree1c + 18] = '`';
-	game[designTree1r - 7][designTree1c + 19] = '.';
-	game[designTree1r - 7][designTree1c + 20] = '_';
-	game[designTree1r - 7][designTree1c + 21] = '|';
-	game[designTree1r - 7][designTree1c + 22] = '|';
-	game[designTree1r - 7][designTree1c + 25] = '/';
-	game[designTree1r - 7][designTree1c + 27] = '/';
-	game[designTree1r - 7][designTree1c + 29] = ',';
-	game[designTree1r - 6][designTree1c + 11] = '/';
-	game[designTree1r - 6][designTree1c + 12] = '\'';
-	game[designTree1r - 6][designTree1c + 18] = '`';
-	game[designTree1r - 6][designTree1c + 19] = '-';
-	game[designTree1r - 6][designTree1c + 20] = '.';
-	game[designTree1r - 6][designTree1c + 22] = '`';
-	game[designTree1r - 6][designTree1c + 23] = '.';
-	game[designTree1r - 6][designTree1c + 24] = '/';
-	game[designTree1r - 6][designTree1c + 26] = '/';
-	game[designTree1r - 6][designTree1c + 28] = '|';
-	game[designTree1r - 6][designTree1c + 29] = '/';
-	game[designTree1r - 6][designTree1c + 30] = '_';
-	game[designTree1r - 6][designTree1c + 31] = '.';
-	game[designTree1r - 6][designTree1c + 32] = '\'';
-	game[designTree1r - 5][designTree1c + 21] = '|';
-	game[designTree1r - 5][designTree1c + 26] = '|';
-	game[designTree1r - 5][designTree1c + 27] = '/';
-	game[designTree1r - 5][designTree1c + 28] = '/';
-	game[designTree1r - 4][designTree1c + 21] = '|';
-	game[designTree1r - 4][designTree1c + 22] = '_';
-	game[designTree1r - 4][designTree1c + 27] = '/';
-	game[designTree1r - 3][designTree1c + 21] = '|';
-	game[designTree1r - 3][designTree1c + 22] = '-';
-	game[designTree1r - 3][designTree1c + 26] = '|';
-	game[designTree1r - 2][designTree1c + 21] = '|';
-	game[designTree1r - 2][designTree1c + 25] = '=';
-	game[designTree1r - 2][designTree1c + 26] = '|';
-	game[designTree1r - 1][designTree1c + 21] = '|';
-	game[designTree1r - 1][designTree1c + 26] = '|';
-	game[designTree1r - 0][designTree1c + 0] = '-';
-	game[designTree1r - 0][designTree1c + 1] = '-';
-	game[designTree1r - 0][designTree1c + 2] = '-';
-	game[designTree1r - 0][designTree1c + 3] = '-';
-	game[designTree1r - 0][designTree1c + 4] = '-';
-	game[designTree1r - 0][designTree1c + 5] = '-';
-	game[designTree1r - 0][designTree1c + 6] = '-';
-	game[designTree1r - 0][designTree1c + 7] = '-';
-	game[designTree1r - 0][designTree1c + 8] = '-';
-	game[designTree1r - 0][designTree1c + 9] = '-';
-	game[designTree1r - 0][designTree1c + 10] = '-';
-	game[designTree1r - 0][designTree1c + 11] = '-';
-	game[designTree1r - 0][designTree1c + 12] = '-';
-	game[designTree1r - 0][designTree1c + 13] = '-';
-	game[designTree1r - 0][designTree1c + 14] = '-';
-	game[designTree1r - 0][designTree1c + 15] = '-';
-	game[designTree1r - 0][designTree1c + 16] = '-';
-	game[designTree1r - 0][designTree1c + 17] = '-';
-	game[designTree1r - 0][designTree1c + 18] = '-';
-	game[designTree1r - 0][designTree1c + 19] = '-';
-	game[designTree1r - 0][designTree1c + 20] = '/';
-	game[designTree1r - 0][designTree1c + 22] = ',';
-	game[designTree1r - 0][designTree1c + 25] = '.';
-	game[designTree1r - 0][designTree1c + 27] = '\\';
-	game[designTree1r - 0][designTree1c + 28] = '-';
-	game[designTree1r - 0][designTree1c + 29] = '-';
-	game[designTree1r - 0][designTree1c + 30] = '-';
-	game[designTree1r - 0][designTree1c + 31] = '-';
-	game[designTree1r - 0][designTree1c + 32] = '-';
-	game[designTree1r - 0][designTree1c + 33] = '-';
-	game[designTree1r - 0][designTree1c + 34] = '-';
-	game[designTree1r - 0][designTree1c + 35] = '-';
-	game[designTree1r - 0][designTree1c + 36] = '.';
-	game[designTree1r - 0][designTree1c + 37] = '_';
 }
 void designTree2 (char game[][350], int designTree2r, int designTree2c) {
 	game[designTree2r - 24][designTree2c + 12] = '.';
@@ -1271,25 +1153,8 @@ void laser(char game[][350], int rLaser, int cLaser, int &chero) {
 		game[rLaser - 1][cLaser + 32] = ':';
 	}
 }
+/*
 void elevator(char game[][350] , int rElevator, int cElevator) {
-	game[rElevator - 26][cElevator + 0] = ' ';
-	game[rElevator - 25][cElevator + 6] = '|';
-	game[rElevator - 24][cElevator + 0] = ' ';
-	game[rElevator - 24][cElevator + 6] = '|';
-	game[rElevator - 23][cElevator + 0] = ' ';
-	game[rElevator - 23][cElevator + 6] = '|';
-	game[rElevator - 22][cElevator + 0] = ' ';
-	game[rElevator - 22][cElevator + 6] = '|';
-	game[rElevator - 21][cElevator + 0] = ' ';
-	game[rElevator - 21][cElevator + 6] = '|';
-	game[rElevator - 20][cElevator + 0] = ' ';
-	game[rElevator - 20][cElevator + 6] = '|';
-	game[rElevator - 19][cElevator + 0] = ' ';
-	game[rElevator - 19][cElevator + 6] = '|';
-	game[rElevator - 18][cElevator + 0] = ' ';
-	game[rElevator - 18][cElevator + 6] = '|';
-	game[rElevator - 17][cElevator + 0] = ' ';
-	game[rElevator - 17][cElevator + 6] = '|';
 	game[rElevator - 16][cElevator + 0] = '_';
 	game[rElevator - 16][cElevator + 1] = '_';
 	game[rElevator - 16][cElevator + 2] = '_';
@@ -1357,12 +1222,24 @@ void elevator(char game[][350] , int rElevator, int cElevator) {
 	game[rElevator - 0][cElevator + 22] = '_';
 	game[rElevator - 0][cElevator + 23] = '_';
 }
+*/
+void singleBullet(char game[][350], int &sBulletR, int &sBulletC, int chero, int enemyMouseC) {
+	if (chero == 100)
+	{
+		for (int i = enemyMouseC - 1; i > 0; i--)
+		{
+				int temp = game[sBulletR][i] = '+';
+		}
+	}
+}
+
 void main() {
 	char game[30][350];
-	int rhero = 26, chero = 5, platformR = 27, platformC = 2, enemy1r = 5, enemy1c = 60, enemy2r = 26, enemy2c = 80, enemy3r = 27, enemy3c = 120, designTree2r = 27, designTree2c = 15, rBorder = 0, cBorder = 350;
+	int rhero = 26, chero = 30, platformR = 27, platformC = 2, designTree2r = 27, designTree2c = -2; //rBorder = 0, cBorder = 350
+	int enemySpiderR = 0, enemySpiderC = 60, enemyMouseR = 27, enemyMouseC = 130, enemyDogR = 27, enemyDogC = 200;
 	char move=NULL;
-	int rLaser = 24, cLaser = 44;
-	int scrollCstart = 0, scrollCend = 120,scrollRstart = 0, scrollRend = 30;
+	int rLaser = 24, cLaser = 44, sBulletR = 25, sBulletC = 129;
+	int scrollCstart = 0, scrollCend = 120, scrollRstart = 30, scrollRend = 0;//SCROLL UP BROKEN
 	int rElevator = 26, cElevator = 150;
 
 
@@ -1370,13 +1247,14 @@ void main() {
 		while (!_kbhit()) {
 			Empty(game);
 			drawPlatform(game, platformR, platformC);
-			elevator(game, rElevator, cElevator);
+			//elevator(game, rElevator, cElevator);
 			designTree2(game, designTree2r, designTree2c);
 			drawHero(game, rhero, chero);
-			drawEnemy1s(game, enemy1r, enemy1c);
+			drawEnemySpider(game, enemySpiderR, enemySpiderC);
 			laser(game, rLaser, cLaser, chero);
-			drawEnemy2a(game, enemy2r, enemy2c);
-			drawEnemy3d(game, enemy3r, enemy3c);
+			drawEnemyMouse(game, enemyMouseR, enemyMouseC);
+			singleBullet(game, sBulletR, sBulletC, chero, enemyMouseC);
+			drawEnemyDog(game, enemyDogR, enemyDogC);
 			drawGame(game, scrollCend, scrollCstart, scrollRstart, scrollRend);
 			//Border(game, rBorder, cBorder);
 			gravity(game, rhero, chero, scrollRstart, scrollRend);
